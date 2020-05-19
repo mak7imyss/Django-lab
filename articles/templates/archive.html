@@ -20,7 +20,7 @@
             {% if user.is_authenticated %}<div class='states'><a id='re' href='{{ STATIC_URL }}/article/new/'>Добавить статью</a></div>{% endif %}
         </div>
             <div class="archive">
-                {% for post in posts %}
+                {% for post in posts reversed %}
                     <div class="one-post">
                         <table class='form-post' width='100%'>
                             <thead style="border:2px double;">
