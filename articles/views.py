@@ -65,32 +65,35 @@ def auth(request):
             return render(request, 'auth.html', {})
 
 def registration(request):
-    if request.method == 'POST':
-        form = {
-            'username': request.POST['username'],
-            'mail': request.POST['mail'],
-            'password': request.POST['password'],
-        }
-        if form["username"] and form["mail"] and form['password']:
-            if len(form['password'])>6:
-                if form['username'] in form['password']:
-                    form['errors'] = u'Пароль содержит имя пользователя!'
-                    return render(request, 'registration.html', {'form': form})
-                else:
-                    try:
-                        User.objects.get(username = form['username'])
-                        form['errors'] = u'Пользователь с таким именем уже существует!'
-                        return render(request, 'registration.html', {'form': form})
-                    except User.DoesNotExist:
-                        User.objects.create_user(form['username'], form['mail'], form['password'])
-                        user = authenticate(request, username=form['username'], password=form['password'])
-                        login(request, user)
-            else:
-                form['errors'] = u'Пароль слишком короткий!'
-                return render(request, 'registration.html', {'form': form})
-        else:
-            form['errors'] = u'Не все поля заполнены!'
-            return render(request, 'registration.html', {'form': form})
+    if request.user.is_authenticated:
         return redirect('archive')
-    else:
-        return render(request, 'registration.html', {})
+    else:    
+        if request.method == 'POST':
+            form = {
+                'username': request.POST['username'],
+                'mail': request.POST['mail'],
+                'password': request.POST['password'],
+            }
+            if form["username"] and form["mail"] and form['password']:
+                if len(form['password'])>6:
+                    if form['username'] in form['password']:
+                        form['errors'] = u'Пароль содержит имя пользователя!'
+                        return render(request, 'registration.html', {'form': form})
+                    else:
+                        try:
+                            User.objects.get(username = form['username'])
+                            form['errors'] = u'Пользователь с таким именем уже существует!'
+                            return render(request, 'registration.html', {'form': form})
+                        except User.DoesNotExist:
+                            User.objects.create_user(form['username'], form['mail'], form['password'])
+                            user = authenticate(request, username=form['username'], password=form['password'])
+                            login(request, user)
+                else:
+                    form['errors'] = u'Пароль слишком короткий!'
+                    return render(request, 'registration.html', {'form': form})
+            else:
+                form['errors'] = u'Не все поля заполнены!'
+                return render(request, 'registration.html', {'form': form})
+            return redirect('archive')
+        else:
+            return render(request, 'registration.html', {})
