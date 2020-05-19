@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация пользователя</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}">
+    <div class="header">
+        <img width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" />
+    </div>
+    <div class='states'><a id='re' href='{{ STATIC_URL }}/'>Архив статей</a></div>
+</head>
+<body class='article'>
+    <div>
+        <div class="archive" style="margin-left: 15%;">
+            <h4 align="center" style="color:orange;">{{ form.errors }}</h4>
+            <table align="center" width='45%'>
+                <thead>
+                    <tr>
+                        <th><h3>Авторизация пользователя</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <form method="POST">
+                {% csrf_token %}
+                <tr>
+                    <td align="center">
+                        <label class="required">Username:</label>
+                        <input name='username' placeholder='Имя пользователя' value='{{users.username }}' type="text" class="naming">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <label class="required">Password:&nbsp;</label>
+                        <input name='password' placeholder='Пароль' value='{{users.password }}' type="password" class="naming"></td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <label></label>
+                        <input type="submit" value="Войти">
+                    </td>
+                </tr>
+            </form>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

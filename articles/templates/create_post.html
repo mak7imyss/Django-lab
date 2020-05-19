@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Создание статьи</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <div class="header">
+        <img width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" />
+    </div>
+    <div class='states'><a id='re' href='{{ STATIC_URL }}/'>Архив статей</a></div>
+  </head>
+  <body>
+    {% block header %}{% endblock %}
+    <div class="content">
+      <h4 align="center" style="color:orange;">{{ form.errors }}</h4>
+      <table align="center" width='50%'>
+        <thead>
+        <tr>
+          <th><h1>Написать статью</h1></th>
+        </tr>
+        <tr>
+        </thead>
+            <tbody><form method="POST">{% csrf_token %}
+              <tr>
+                <td align='center'>
+                  
+                  <input style='width:99%;height:2em' type="text" name="title" placeholder="Название статьи" value="{{ form.title }}"/></td>
+              </tr>
+              <tr>
+                <td align='center'><textarea style='width:99%;height:10em' name="text" placeholder="Текст статьи">{{ form.text }}</textarea></td>
+              </tr>
+              <tr>
+                <td align='center'><input type="submit" value="Сохранить" /></td>
+              </tr>
+            </form></tbody>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+
+

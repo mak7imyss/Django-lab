@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/article.css' %}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="archive">
+      {% for post in posts %}
+      <div class="one-post">
+          
+        <h2 class="post-title">{{ post.title }}</h2>
+        <a class="fold-button" href="#!">Скрыть</a>
+        <div class="box">
+        <div class="article-info">
+          <div class="article-author">{{ post.author.username }}</div>
+          <div class="article-created-date">{{ post.created_date }}</div>
+        </div>
+        <p class="article-text">{{ post.get_excerpt }}</p>
+      </div></div>
+      {% endfor %}
+      <div class="one-post">
+          <table class='form-post' width='100%'>
+              <thead style="border:2px double;">
+              <tr>
+                  <th style="border-right: none;" width='80%'><div align='left'><h2 class="post-title"><a href="{{ STATIC_URL }}/article/{{post.id}}">{{ post.title }}</a></h2></div></th>
+                  <th style="border-left: none;"><a class="fold-button" href="#!">Раскрыть</a></th>
+              </tr>
+              </thead>
+              <tbody class="no-box" style="border:2px double;">
+              <tr class='fold-table'>
+                  <td><p class='article-author'><b>Автор: </b>{{  post.author.username }}</p></td>
+                  <td><p class="article-created-date">{{  post.created_date }}</p></td>
+              </tr>
+              
+              <tr class='fold-table'>
+                  <td colspan='2'><p class="article-text">{{  post.get_excerpt }}</p></td>
+              </tr>
+              </tbody>
+          </table>                    
+      </div>
+    </div>
+    <script src="{% static 'js/test.js' %}"></script>
+  </body>
+</html>

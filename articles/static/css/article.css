@@ -1,0 +1,131 @@
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;
+}
+.header img {
+    display: block;
+    width: 318px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+}
+.archive {
+    width: 70%;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+.article {
+    width: 70%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+.post-title a {
+    color: #ffffff;
+    border-bottom: 10px;
+    font-size: 30px;
+    margin-left: 1%;
+
+}
+.article-author {
+    /* font-size: 16px; */
+    text-align: left;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+.article-author:hover {
+    color: gold;
+}
+.article-created-date {
+    text-align: right;
+    margin-right: 2%;
+}
+.article-created-date:hover {
+    color: gold;
+}
+h2 {
+    font-size: 30px;
+    margin-left: 1%;
+    margin-top: 3%;
+}
+.article-text{
+    font-size: 20px;
+    margin-top: 3%;
+    margin-left: 2%;
+    margin-right: 1%;
+    margin-bottom: 3%;
+    /* color: purple; */
+}
+.article-text:hover {
+    color: gold;
+}
+.states {
+    text-align: right;
+    margin-right: 10%;
+    margin-bottom: 1%;
+    color: orangered;
+}
+a:hover {
+    color:red;
+}
+a:active {
+    color:yellow;
+}
+.states a:visited{
+    color: white;
+}
+.state a:link{
+    color:blue;
+}
+table {
+    border:2px double;
+    margin-bottom: 2%;
+}
+th {
+    border:2px double;
+}
+th h2:hover{
+    color: chocolate;
+}
+td {
+    border:2px double;
+}
+.fold-button{
+    color: white;
+    text-align:right;
+    /* margin-right: 5%; */
+}
+/* .form-post{
+    display: ;
+}
+.form-post-folded .box{
+    display: none;
+}
+.one-post{
+    display: block;
+}
+.one-post-folded .fold-table{
+    display: none;
+} */
+/* .one-post-folded .article-author{
+    display: none;
+}
+.one-post-folded .article-created-date{
+    display: none;
+}
+.one-post-folded .article-text{
+    display: none;
+} */
+/* .one-post.folded .article-author{
+    данный стиль применится только для элементов класса
+    .article-author, у которых родитель с классом one-post имеет также класс folded
+    display: none;
+    } */
+.box {
+    display: table-footer-group;
+}
+.no-box {
+    display: none;
+}

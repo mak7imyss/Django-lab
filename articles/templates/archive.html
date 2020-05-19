@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Архив статей</title>
+        <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <div class='states'>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Выйти ({{ request.user }})</a>
+                {% else %}
+                    <a href="{{ STATIC_URL }}/auth/login/">Войти</a> | <a href="{{ STATIC_URL }}/auth/registration/">Регистрация</a>
+                {% endif %}
+            </div>
+            <img class='cov' width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" />
+            {% comment %} <center><audio src="https://s104iva.storage.yandex.net/get-mp3/c7405d2210fae0608a57a3c6b10debb4/0005a486aefee88b/rmusic/U2FsdGVkX1_oOI2c7bjpdSdW_zHh0W8J_o5eMJ3fUV93xhjAozC4xWp9bSwo2WaT5DcxJmA2NYlj7N2G-6u7kMu2X2jy1FNVLAUdFAqBli8/f68c40dbd35a68c99c9de1331221ca0a6baa824cbede15563977bf98f919bdff?track-id=37615" controls></audio></center> {% endcomment %}
+            <center><audio src="{{ STATIC_URL }}/static/media/audio.mp3" controls></audio></center>
+            {% if user.is_authenticated %}<div class='states'><a id='re' href='{{ STATIC_URL }}/article/new/'>Добавить статью</a></div>{% endif %}
+        </div>
+            <div class="archive">
+                {% for post in posts %}
+                    <div class="one-post">
+                        <table class='form-post' width='100%'>
+                            <thead style="border:2px double;">
+                            <tr>
+
+                                <th style="border-right: none;" width='80%'><div align='left'><h2 class="post-title"><a href="{{ STATIC_URL }}/article/{{post.id}}">{{ post.title }}</a></h2></div></th>
+                                <th style="border-left: none;"><a class="fold-button" href="#!">Раскрыть</a></th>
+                            </tr>
+                            </thead>
+                            <tbody class="no-box" style="border:2px double;">
+                            <tr class='fold-table'>
+                                <td><p class='article-author'><b>Автор: </b>{{  post.author.username }}</p></td>
+                                <td><p class="article-created-date">{{  post.created_date }}</p></td>
+                            </tr>
+                            
+                            <tr class='fold-table'>
+                                <td colspan='2'><p class="article-text">{{  post.get_excerpt }}</p></td>
+                            </tr>
+                            </tbody>
+                        </table>                    
+                    </div>
+                {% endfor %}
+            </div>
+        <script src="{% static 'js/fold-post.js' %}"></script>
+    </body>
+</html>

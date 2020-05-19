@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block title %}
+    <title>{{ post.title }}</title>
+{% endblock title %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <div class="header">
+        <img width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" />
+    </div>
+    <div class='states'><a id='re' href='{{ STATIC_URL }}/'>Архив статей</a></div>
+{% endblock head %}
+
+{% block article %}
+    <div class="article">
+        <div class="one-post">
+            <table width='100%'>
+                <thead style="border:2px double;">
+                <tr>
+                    <th align='left' colspan='2'><h2 class="post-title">{{ post.title }}</h2></td>
+                </tr>
+            </thead>
+            <tbody class="box" style="border:2px double;">
+                    <tr>
+                    <td width='80%'><p class='article-author'><b>Автор: </b>{{  post.author.username }}</p></td>
+                    <td><p class="article-created-date">{{  post.created_date }}</p></td>
+                </tr>
+                <tr>
+                    <td colspan='2'><p class="article-text">{{  post.get_excerpt }}</p></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock article %}
+
+
