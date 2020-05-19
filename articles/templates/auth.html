@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="{% static 'css/article.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}">
-    <div class="header">
-        <img width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" />
-    </div>
-    <div class='states'><a id='re' href='{{ STATIC_URL }}/'>Архив статей</a></div>
+
+
 </head>
 <body class='article'>
+        <div class="header">
+            <div class='states'>
+                {% if user.is_authenticated %}
+
+                {% else %}
+                <a href="{{ STATIC_URL }}/auth/registration/">Регистрация</a>
+                {% endif %}
+            </div>
+            <a href="{{ STATIC_URL }}/"><img width='200px' src="https://s.tcdn.co/81c/c1e/81cc1ee9-0b7a-4cf8-82cf-59208b404fdc/10.png" /></a>
+        </div>
+    <div class='states'><a id='re' href='{{ STATIC_URL }}/'>Архив статей</a></div>
     <div>
         <div class="archive" style="margin-left: 15%;">
             <h4 align="center" style="color:orange;">{{ form.errors }}</h4>
